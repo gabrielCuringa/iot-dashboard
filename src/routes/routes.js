@@ -8,6 +8,7 @@ import UserProfile from "src/pages/UserProfile.vue";
 import TableList from "src/pages/TableList.vue";
 import Typography from "src/pages/Typography.vue";
 import Icons from "src/pages/Icons.vue";
+import Room from "src/pages/Room.vue";
 import Notifications from "src/pages/Notifications.vue";
 
 const routes = [
@@ -27,24 +28,9 @@ const routes = [
         component: Overview
       },
       {
-        path: "user",
-        name: "User",
-        component: UserProfile
-      },
-      {
-        path: "table-list",
-        name: "Table List",
-        component: TableList
-      },
-      {
-        path: "typography",
-        name: "Typography",
-        component: Typography
-      },
-      {
-        path: "icons",
-        name: "Icons",
-        component: Icons
+        path: "overview/building",
+        name: "Room",
+        component: Room
       },
       {
         path: "notifications",

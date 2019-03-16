@@ -1,6 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
+import Vuetify from "vuetify";
+import "vuetify/dist/vuetify.min.css"; // Ensure you are using css-loader
+import "material-design-icons-iconfont/dist/material-design-icons.css";
 
 // LightBootstrap plugin
 import LightBootstrap from "./light-bootstrap-main";
@@ -11,6 +14,9 @@ import routes from "./routes/routes";
 import "./registerServiceWorker";
 // plugin setup
 Vue.use(VueRouter);
+Vue.use(Vuetify, {
+  iconfont: "md"
+});
 Vue.use(LightBootstrap);
 
 // configure router

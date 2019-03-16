@@ -1,16 +1,18 @@
 <template>
   <div :class="{'nav-open': $sidebar.showSidebar}">
     <notifications></notifications>
-    <router-view></router-view>
+    <v-app>
+      <router-view></router-view>
+    </v-app>
   </div>
 </template>
 
 <script>
 import mqtt from "./helpers/mqtt.js";
+
 export default {
   mounted() {
-    mqtt.subscribe(mqtt.topics.all);
-    //mqtt.subscribe(mqtt.topics.temperature);
+    mqtt.subscribe(mqtt.topics.building_room_sensor);
   }
 };
 </script>

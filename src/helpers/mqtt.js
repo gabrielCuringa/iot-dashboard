@@ -12,15 +12,15 @@ var options = {
 var client = mqtt.connect(options);
 
 export default {
+  /** TOPIC FORMAT **/
+  // /building_identifier/room_identifier/sensor_name
   topics: {
+    base_url: initMqttUrl,
     all: initMqttUrl + "/#",
-    temperature: initMqttUrl + "/temperature"
+    building_room_sensor: initMqttUrl + "/+/+/sensor"
   },
   publish: (topic, message) => {
-    client.on("connect", function() {
-      console.log("mqtt client is connected");
-      client.publish(topic, message);
-    });
+    client.publish(topic, JSON.stringify(message));
   },
   subscribe: (topic, options = {}) => {
     client.subscribe(topic, options);
