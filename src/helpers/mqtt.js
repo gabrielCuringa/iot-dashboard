@@ -17,10 +17,10 @@ export default {
   topics: {
     base_url: initMqttUrl,
     all: initMqttUrl + "/#",
-    building_room_sensor: initMqttUrl + "/+/+/sensor"
+    building_room_sensor: initMqttUrl + "/+/+/temperatures"
   },
   publish: (topic, message) => {
-    client.publish(topic, JSON.stringify(message));
+    client.publish(topic, message);
   },
   subscribe: (topic, options = {}) => {
     client.subscribe(topic, options);
@@ -29,5 +29,8 @@ export default {
     client.on("message", function(topic, message) {
       callback(topic, JSON.parse(message.toString()));
     });
+  },
+  unsubscribe: topic => {
+    client.unsubscribe(topic);
   }
 };

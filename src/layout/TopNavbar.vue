@@ -1,14 +1,16 @@
 <template>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Dashboard</a>
-      <button type="button"
-              class="navbar-toggler navbar-toggler-right"
-              :class="{toggled: $sidebar.showSidebar}"
-              aria-controls="navigation-index"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              @click="toggleSidebar">
+      <a class="navbar-brand" href="/#/admin/overview">Dashboard</a>
+      <button
+        type="button"
+        class="navbar-toggler navbar-toggler-right"
+        :class="{toggled: $sidebar.showSidebar}"
+        aria-controls="navigation-index"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        @click="toggleSidebar"
+      >
         <span class="navbar-toggler-bar burger-lines"></span>
         <span class="navbar-toggler-bar burger-lines"></span>
         <span class="navbar-toggler-bar burger-lines"></span>
@@ -41,9 +43,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              Account
-            </a>
+            <a class="nav-link" href="#">Account</a>
           </li>
           <base-dropdown title="Dropdown">
             <a class="dropdown-item" href="#">Action</a>
@@ -55,9 +55,7 @@
             <a class="dropdown-item" href="#">Separated link</a>
           </base-dropdown>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              Log out
-            </a>
+            <a href="#" class="nav-link">Log out</a>
           </li>
         </ul>
       </div>
@@ -65,38 +63,36 @@
   </nav>
 </template>
 <script>
-  export default {
-    computed: {
-      routeName () {
-        const {name} = this.$route
-        return this.capitalizeFirstLetter(name)
-      }
+export default {
+  computed: {
+    routeName() {
+      const { name } = this.$route;
+      return this.capitalizeFirstLetter(name);
+    }
+  },
+  data() {
+    return {
+      activeNotifications: false
+    };
+  },
+  methods: {
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     },
-    data () {
-      return {
-        activeNotifications: false
-      }
+    toggleNotificationDropDown() {
+      this.activeNotifications = !this.activeNotifications;
     },
-    methods: {
-      capitalizeFirstLetter (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-      },
-      toggleNotificationDropDown () {
-        this.activeNotifications = !this.activeNotifications
-      },
-      closeDropDown () {
-        this.activeNotifications = false
-      },
-      toggleSidebar () {
-        this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
-      },
-      hideSidebar () {
-        this.$sidebar.displaySidebar(false)
-      }
+    closeDropDown() {
+      this.activeNotifications = false;
+    },
+    toggleSidebar() {
+      this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
+    },
+    hideSidebar() {
+      this.$sidebar.displaySidebar(false);
     }
   }
-
+};
 </script>
 <style>
-
 </style>

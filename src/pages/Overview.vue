@@ -2,7 +2,6 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
-        <button class="btn btn-default btn-block" @click="publish()">Test publish</button>
         <div class="col-xl-3 col-md-6">
           <stats-card>
             <div slot="header" class="icon-warning">
@@ -34,21 +33,23 @@
                 <td>{{ props.item.address }}</td>
               </tr>
 
-              <tr class="expand" v-if="props.item.rooms.length>0" v-show="props.item.expanded">
-                <td colspan="100%">
-                  <v-expansion-panel>
-                    <v-expansion-panel-content v-model="props.item.expanded">
-                      <ol>
-                        <li v-for="room in props.item.rooms" v-bind:key="room.name">
-                          <router-link
-                            :to="{ name: 'Room', params: { id: room._id, buildingName: props.item.name, rooms: props.item.rooms }}"
-                          >Salle {{room.name}}</router-link>
-                        </li>
-                      </ol>
-                    </v-expansion-panel-content>
-                  </v-expansion-panel>
-                </td>
-              </tr>
+              <div v-if="props.item.rooms.length>0">
+                <tr class="expand" v-show="props.item.expanded">
+                  <td colspan="100%">
+                    <v-expansion-panel>
+                      <v-expansion-panel-content v-model="props.item.expanded">
+                        <ol>
+                          <li v-for="room in props.item.rooms" v-bind:key="room.name">
+                            <router-link
+                              :to="{ name: 'Room', params: { buildingname: props.item.name, roomname: room.name}, query: {id: room._id}}"
+                            >Salle {{room.name}}</router-link>
+                          </li>
+                        </ol>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </td>
+                </tr>
+              </div>
             </template>
 
             <!--<template v-slot:expand="props">
@@ -351,6 +352,7 @@ export default {
   },
   mounted() {
     //mqtt.publish(mqtt.topics.temperature, "mon message");
+    //mqtt.subscribe(mqtt.topics.building_room_sensor);
     this.initDatas(true);
   },
   methods: {
@@ -378,7 +380,7 @@ export default {
               api.post("/generic/buildings", createBuilding, newbuildingid => {
                 var createRoom = {
                   name: roomName,
-                  sensors: []
+                  temperatures: []
                 };
                 api.post("/generic/rooms", createRoom, newroomid => {
                   var updateRoomInBuilding = {
@@ -407,7 +409,7 @@ export default {
                     console.log("La salle n'existe pas");
                     var createRoom = {
                       name: roomName,
-                      sensors: []
+                      temperatures: []
                     };
                     api.post("/generic/rooms", createRoom, aNewroomid => {
                       var updateRoom = {

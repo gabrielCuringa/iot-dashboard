@@ -11,9 +11,7 @@
 import mqtt from "./helpers/mqtt.js";
 
 export default {
-  mounted() {
-    mqtt.subscribe(mqtt.topics.building_room_sensor);
-  }
+  mounted() {}
 };
 </script>
 <style lang="scss">
