@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <side-bar>
+    <!--side-bar>
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/admin/overview">
         <i class="nc-icon nc-chart-pie-35"></i>
@@ -10,8 +10,8 @@
         <i class="nc-icon nc-bell-55"></i>
         <p>Notifications</p>
       </sidebar-link>
-    </side-bar>
-    <div class="main-panel">
+    </side-bar>-->
+    <div>
       <top-navbar></top-navbar>
 
       <dashboard-content @click="toggleSidebar"></dashboard-content>

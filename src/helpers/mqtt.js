@@ -6,7 +6,8 @@ var options = {
   port: 8000,
   path: "/mqtt",
   clientId: "iot-m1miage-dc",
-  connectTimeout: 5000
+  connectTimeout: 5000,
+  reconnectPeriod: 1000 * 1
 };
 
 var client = mqtt.connect(options);
@@ -17,7 +18,8 @@ export default {
   topics: {
     base_url: initMqttUrl,
     all: initMqttUrl + "/#",
-    building_room_sensor: initMqttUrl + "/+/+/temperatures"
+    create: initMqttUrl + "/create",
+    building_room_temperature: initMqttUrl + "/+/+/temperatures"
   },
   publish: (topic, message) => {
     client.publish(topic, message);

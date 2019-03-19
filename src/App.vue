@@ -8,8 +8,6 @@
 </template>
 
 <script>
-import mqtt from "./helpers/mqtt.js";
-
 export default {
   mounted() {}
 };

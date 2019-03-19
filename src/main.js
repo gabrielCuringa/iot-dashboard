@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
 import Vuetify from "vuetify";
+import VueApexCharts from "vue-apexcharts";
 import "vuetify/dist/vuetify.min.css"; // Ensure you are using css-loader
 import "material-design-icons-iconfont/dist/material-design-icons.css";
 
@@ -18,6 +19,11 @@ Vue.use(Vuetify, {
   iconfont: "md"
 });
 Vue.use(LightBootstrap);
+Vue.use(VueApexCharts);
+Vue.component("apexchart", VueApexCharts);
+
+Vue.prototype.$lastTopicSub = [];
+Vue.prototype.$isCreateTopicSub = [];
 
 // configure router
 const router = new VueRouter({
